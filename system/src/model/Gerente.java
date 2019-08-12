@@ -9,6 +9,10 @@ package model;
  *
  * @author ProyDS 3
  */
-public class Gerente {
+public class Gerente extends Empleado{
+    
+    public Gerente(String usuario, String contrasena, String nombre, String direccion, String telefono, String correo, String cedula) {
+        super(usuario, contrasena, nombre, direccion, telefono, correo, cedula);
+    }
     
 }
