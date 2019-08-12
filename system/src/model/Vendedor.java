@@ -9,6 +9,10 @@ package model;
  *
  * @author ProyDS 3
  */
-public class Vendedor {
+public class Vendedor extends Empleado{
+    
+    public Vendedor(String usuario, String contrasena, String nombre, String direccion, String telefono, String correo, String cedula) {
+        super(usuario, contrasena, nombre, direccion, telefono, correo, cedula);
+    }
     
 }

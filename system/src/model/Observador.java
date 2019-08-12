@@ -10,5 +10,6 @@ package model;
  * @author ProyDS 3
  */
 public interface Observador {
-    
+ 
+    public void reportar(EntregaDomicilio ed);
 }

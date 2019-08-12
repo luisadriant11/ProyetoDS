@@ -9,6 +9,6 @@ package model;
  *
  * @author ProyDS 3
  */
-public class FormaPAgo {
+public class FormaPago {
     
 }
