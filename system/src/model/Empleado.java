@@ -1,22 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- *
- * @author ProyDS 3
- */
-public class Empleado extends Persona{
-    protected String usuario;
-    protected String contrasena;
+import java.util.LinkedList;
 
-    public Empleado(String usuario, String contrasena, String nombre, String direccion, String telefono, String correo, String cedula) {
-        super(nombre, direccion, telefono, correo, cedula);
-        this.usuario = usuario;
-        this.contrasena = contrasena;
+public abstract class Empleado extends Persona {
+
+    public Empleado() {
+    }
+
+    protected String usuario;
+    protected String contraseña;
+    protected String tipo;
+    protected boolean isSuper;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public boolean isIsSuper() {
+        return isSuper;
+    }
+
+    public void setIsSuper(boolean isSuper) {
+        this.isSuper = isSuper;
     }
 
     public String getUsuario() {
@@ -27,18 +36,15 @@ public class Empleado extends Persona{
         this.usuario = usuario;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
-
+    public abstract LinkedList<LinkedList<String>> consultarArticulo(String modo, String campo);
     
-
-    
-    
-    
+    public abstract LinkedList<String> consultarCliente(String cedula);
 }

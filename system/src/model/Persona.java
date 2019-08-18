@@ -1,26 +1,35 @@
-/*
- * To change this license * To change this template file, choose Tools | Templates
- header, choose License Headers in Project Properties.
- * and open the template in the editor.
- */
-package model;
+ package model;
 
-/**
- *
- * @author ProyDS 3
- */
-public class Persona {
+import java.util.*;
+
+public abstract class Persona {
+
     protected String nombre;
-    protected String direccion;
-    protected String telefono;
-    protected String correo;
+    protected String apellido;
+    protected Date fechaNacimiento;
+    protected String numeroTelefonico;
+    protected String direccionDomicilio;
+    protected String correoElectronico;
     protected String cedula;
 
-    public Persona(String nombre, String direccion, String telefono, String correo, String cedula) {
+    public Persona() {
+    }
+
+    public Persona(String nombre, String apellido, Date fechaNacimiento, String numeroTelefonico, String direcciónDomicilio, String correoElectronico, String cedula) {
         this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.correo = correo;
+        this.apellido = apellido;
+        this.fechaNacimiento = fechaNacimiento;
+        this.numeroTelefonico = numeroTelefonico;
+        this.direccionDomicilio = direcciónDomicilio;
+        this.correoElectronico = correoElectronico;
+        this.cedula = cedula;
+    }
+    
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -32,37 +41,43 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getNumeroTelefonico() {
+        return numeroTelefonico;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setNumeroTelefonico(String numeroTelefonico) {
+        this.numeroTelefonico = numeroTelefonico;
     }
 
-    public String getCedula() {
-        return cedula;
+    public String getDireccionDomicilio() {
+        return direccionDomicilio;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setDireccionDomicilio(String direccionDomicilio) {
+        this.direccionDomicilio = direccionDomicilio;
     }
-    
-    
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
 }

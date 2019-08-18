@@ -2,39 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Eduardo/system/src/model/Venta.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Sucursal.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Empleado.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/FabricaCamara.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/ProductoTecnologico.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/JefeBodega.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Credito.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Local.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/FabricaConsola.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Responsabilitty.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Pago.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Vendedor.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Transaccion.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Persona.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/EntregaADomicilio.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Repartidor.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Observador.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/PagoStrategy.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/system/System.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/FormaPAgo.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Efectivo.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Cliente.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Matriz.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Celular.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Registro.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/EntregaDomicilio.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Administrador.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Bodega.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Articulo.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Camara.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/FabricaCelular.java</file>
-            <file>file:/C:/Users/Eduardo/system/src/model/Gerente.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

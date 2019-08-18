@@ -1,42 +1,60 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model;
+ package model;
 
+import model.FactoryMethod.Articulo;
 import java.util.LinkedList;
 
-/**
- *
- * @author ProyDS 3
- */
 public class Local {
-    protected String idLocal;
-    protected String direccion;
-    protected String telefono;
-    protected LinkedList<Articulo> articulos;
-    protected boolean internet;
-    protected LinkedList<Empleado> empleados;
-    protected Gerente gerente;
-    protected Administrador administrador;
 
-    public Local(String idLocal, String direccion, String telefono, LinkedList<Articulo> articulos, boolean internet, LinkedList<Empleado> empleados, Gerente gerente, Administrador administrador) {
+    private int idLocal;
+    private String dirección;
+    private String telefono;
+    private LinkedList<Articulo> articulos;
+    private boolean internet;
+    
+    public Local() {
+    }
+
+    public int getIdLocal() {
+        return idLocal;
+    }
+
+    public void setIdLocal(int idLocal) {
         this.idLocal = idLocal;
-        this.direccion = direccion;
-        this.telefono = telefono;
+    }
+
+    public LinkedList<Articulo> getArticulos() {
+        return articulos;
+    }
+
+    public void setArticulos(LinkedList<Articulo> articulos) {
         this.articulos = articulos;
-        this.internet = internet;
-        this.empleados = empleados;
-        this.gerente = gerente;
-        this.administrador = administrador;
     }
-    
-    public void emitirDocumento(Transaccion t){
-        System.out.println("Documento emitido");
-    }
-    
-    public boolean verificarConexion(){
+
+    public boolean isInternet() {
         return internet;
+    }
+
+    public void setInternet(boolean internet) {
+        this.internet = internet;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDirección() {
+        return dirección;
+    }
+
+    public void setDirección(String dirección) {
+        this.dirección = dirección;
+    }
+
+    public void pedirAbastecimiento() {
+        // TODO implement here
     }
 }

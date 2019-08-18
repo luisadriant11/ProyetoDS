@@ -1,93 +1,62 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package model;
+ package model;
 
-import java.util.Date;
-import java.util.LinkedList;
+import model.Strategy.FormaPago;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-
-public class Venta extends Responsabilitty {
-    protected String codigo;
-    protected Date fecha;
-    protected LinkedList<Articulo> productosVendidos;
-    protected float subtotal;
-    protected float iva;
-    protected float total;
-    protected Pago formaPago;
-
-    public Venta(LinkedList<Articulo> productosVendidos,Pago formaPago) {
-        this.codigo = "";
-        this.fecha = new Date();
-        this.productosVendidos = productosVendidos;
-        this.subtotal = 0;
-        this.iva = 0;
-        this.total = 0;
-        this.formaPago = formaPago;
+public class Venta {
+    
+    private String codigo;
+    private Date fecha;
+    private float subtotal;
+    private float total;
+    private final float iva=(float) 0.12;
+    private FormaPago pago;
+    
+    public Venta() {
+        
     }
 
     public String getCodigo() {
         return codigo;
     }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    
+    public FormaPago getPago(){
+        return this.pago;
+    }
+    
+    public Venta(Date fecha, float subtotal, float total) {
+        this.fecha = fecha;
+        this.subtotal = subtotal;
+        this.total = total;        
+        SimpleDateFormat formateador1 = new SimpleDateFormat("yyyyMMddhhmmss");                        
+        java.util.Date ahora = new java.util.Date();        
+        String codigoS = formateador1.format(ahora);
+        this.codigo=codigoS;
+    }        
+    
+    public double calcularValorTotal() {
+        return this.total=this.subtotal+this.subtotal*this.iva;
+    }
+    
+    public void generarPago(String modo){
+        pago = new FormaPago();
+        pago.pagar(modo, total);       
     }
 
     public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public LinkedList<Articulo> getProductosVendidos() {
-        return productosVendidos;
-    }
-
-    public void setProductosVendidos(LinkedList<Articulo> productosVendidos) {
-        this.productosVendidos = productosVendidos;
-    }
+    public void setFecha() {
+        this.fecha = new Date();
+    }    
 
     public float getSubtotal() {
-        productosVendidos.forEach((i) -> {
-            subtotal+=i.precio;
-        });
         return subtotal;
     }
 
-
-    public float getIva() {
-        iva=(float) (subtotal*0.12);
-        return iva;
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
     }
-
-
-
-    public float getTotal() {
-        total=getSubtotal()+getIva();
-        return total;
-    }
-
-
-    public Pago getFormaPago() {
-        return formaPago;
-    }
-
-    public void setFormaPago(Pago formaPago) {
-        this.formaPago = formaPago;
-    }
-    
-    
-    
-    
-    
-    @Override
-    public void setNextResponsability() {
-        super.setNextResponsability(); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

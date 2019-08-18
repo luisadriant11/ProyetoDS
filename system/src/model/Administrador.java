@@ -1,33 +1,106 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- *
- * @author ProyDS 3
- */
-public class Administrador extends Empleado{
+import model.FactoryMethod.Articulo;
+import model.Observer.PeticionPermiso;
+import model.ChainOfResponsability.Transaccion;
+import controller.ConsultasDB;
+import controller.IngresosDB;
+import java.util.LinkedList;
+
+public class Administrador extends Empleado implements PeticionPermiso{
+    private IngresosDB ingreso;
+    private ConsultasDB consultas;
     
-    public Administrador(String usuario, String contrasena, String nombre, String direccion, String telefono, String correo, String cedula) {
-        super(usuario, contrasena, nombre, direccion, telefono, correo, cedula);
+    public Administrador() {
+        ingreso = new IngresosDB();
+        consultas =new ConsultasDB();        
     }
     
-    public boolean agregarArticulo(Articulo a){
-        return false;
+    public void agregarArticulo(Articulo a){
+        ingreso.agregarArticuloDB(a);
     }
     
-    public boolean actualizarStock(Articulo a, int cant){
+    public void manejarTransacciones() {
+        // TODO implement here
+    }
+
+    public void ingresarStock(Articulo a, int num) {
+        // TODO implement here
+    }
+
+    public void actualizarStock(float num) {
+        // TODO implement here
+    }
+
+    public void ingresarPrecioDeVenta(float num) {
+        // TODO implement here
+    }
+
+    public void actualizarPrecioDeVenta(float num) {
+        // TODO implement here
+    }
+
+    public boolean consultarArticulo(Articulo a) {
+        // TODO implement here
         return false;
     }
-    
-    public boolean actualizarPrecio(Articulo a, int cant){
+
+    public void eliminarArticulo(Articulo a) {
+        // TODO implement here
+    }
+
+    public void ingresarTransaccion(Transaccion t) {
+        // TODO implement here
+    }
+
+    public void actualizarTransaccion(Transaccion t) {
+        // TODO implement here
+    }
+
+    public boolean consultarTransaccion(Transaccion t) {
+        // TODO implement here
         return false;
     }
-    
-    public boolean elimiarArticulo(Articulo a){
+
+    public void eliminarTransaccion(Transaccion t) {
+        // TODO implement here
+    }
+
+    public void ingresarCliente(boolean b, Empleado e) {
+        // TODO implement here
+    }
+
+    public void actualizarCliente(boolean b, Empleado e) {
+        // TODO implement here
+    }
+
+    public boolean consultarCliente(boolean b, Empleado e) {
+        // TODO implement here
         return false;
+    }
+
+    public void eliminarCliente(boolean s, Empleado e) {
+        // TODO implement here
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Administrador:");
+        System.out.println("Concebir permiso ...");
+    }
+
+    @Override
+    public LinkedList<LinkedList<String>> consultarArticulo(String modo, String campo) {
+        System.out.println("consulta articulo ...");        
+        System.out.println(modo);
+        System.out.println(campo);
+        LinkedList<LinkedList<String>> datos = consultas.consultarArticulo(modo, campo);
+        return datos;
+    }
+
+    @Override
+    public LinkedList<String> consultarCliente(String cedula) {
+        //Implementacion del metodo
+        return null;
     }
 }

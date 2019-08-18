@@ -1,38 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
+import model.FactoryMethod.Articulo;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+public class Cotizacion {
 
-public class Cotizacion extends Responsabilitty {
-    protected String codigo;
-    protected Date fecha;
-    protected float total;
-    protected LinkedList<Articulo> articulos;
+    private String codigo;
+    private Date fecha;
+    private float total;
 
     public Cotizacion() {
-        this.codigo = "";
-        this.fecha = new Date();
-        this.total = 0;
     }
 
     public Cotizacion(Date fecha, float total) {
         this.fecha = fecha;
         this.total = total;
+        setCodigo();
     }
 
     public String getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public Date getFecha() {
@@ -44,26 +32,29 @@ public class Cotizacion extends Responsabilitty {
     }
 
     public float getTotal() {
-        calcularTotal();
         return total;
     }
 
-    public void setTotal(float total) {
-        this.total = total;
-    }
-
-    private void calcularTotal() {
-        Articulo art;
-        float cont=0;
-        for (Iterator<Articulo> it = articulos.iterator(); it.hasNext();) {
-            art = it.next();
-            cont+=art.getPrecio();
+    public void calcularTotal(LinkedList<Articulo> listArticulos){
+        if (null!=listArticulos) {
+            listArticulos.forEach((a) -> {
+                total += a.getPrecio();
+            });
         }
-        total=cont;       
     }
     
-    @Override
-    public void setNextResponsability(){
-        
+    public void mostrarProductosCotizados(LinkedList<Articulo> listArticulos){
+        if (null != listArticulos) {
+            listArticulos.forEach((a) -> {
+                System.out.println(a.getCategoria() + a.getDescripcion());
+            });
+        }
+    }    
+    
+    private void setCodigo(){
+        SimpleDateFormat formateador1 = new SimpleDateFormat("yyyyMMddhhmmss");                        
+        java.util.Date ahora = new java.util.Date();        
+        String codigoS = formateador1.format(ahora);
+        this.codigo=codigoS;
     }
 }
