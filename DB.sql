@@ -107,3 +107,4 @@ create table t_detalleCotizacion(
 	foreign key(Articulo_ID)references t_articulo(Art_ID),
     foreign key(Cot_ID)references t_cotizacion(Cot_ID)
     );
+    
