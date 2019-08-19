@@ -23,11 +23,12 @@ public class ActualizacionesDB {
             System.out.println("entra al nombre");
             pst = conexion.prepareStatement("SELECT * FROM t_venta WHERE Venta_Cod = ?");           
             pst.setString(1, codigo);
-            ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");
-            while (rs.next()) {
-                datos.add(String.valueOf(rs.getDouble("Venta_Subtotal")));
-                datos.add(String.valueOf(rs.getDouble("Venta_Total")));                
+            try (ResultSet rs = pst.executeQuery()) {
+                System.out.println("ejecucion del query");
+                while (rs.next()) {
+                    datos.add(String.valueOf(rs.getDouble("Venta_Subtotal")));
+                    datos.add(String.valueOf(rs.getDouble("Venta_Total")));                
+                }
             }
             return datos;
         } catch (SQLException ex) {

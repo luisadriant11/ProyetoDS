@@ -34,30 +34,32 @@ public class CargasDB {
 
     public Empleado login(String user, String pass) {
         try {
-            PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_usuario WHERE usuario = ? AND pass = ?");
-            pst.setString(1, user);
-            pst.setString(2, pass);
-            ResultSet resultados = pst.executeQuery();
-            while (resultados.next()) {
-                String t = resultados.getString("tipo");
-                switch (t) {
-                    case "v":
-                        Vendedor v = new Vendedor();
-                        setearDatos(v, resultados);
-                        close(pst, resultados);
-                        return v;
-                    case "g":
-                        Gerente g = new Gerente();
-                        setearDatos(g, resultados);
-                        close(pst, resultados);
-                        return g;
-                    case "a":
-                        Administrador a = new Administrador();
-                        setearDatos(a, resultados);
-                        close(pst, resultados);
-                        return a;
-                    default:
-                        break;
+            try (PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_usuario WHERE usuario = ? AND pass = ?")) {
+                pst.setString(1, user);
+                pst.setString(2, pass);
+                try (ResultSet resultados = pst.executeQuery()) {
+                    while (resultados.next()) {
+                        String t = resultados.getString("tipo");
+                        switch (t) {
+                            case "v":
+                                Vendedor v = new Vendedor();
+                                setearDatos(v, resultados);
+                                close(pst, resultados);
+                                return v;
+                            case "g":
+                                Gerente g = new Gerente();
+                                setearDatos(g, resultados);
+                                close(pst, resultados);
+                                return g;
+                            case "a":
+                                Administrador a = new Administrador();
+                                setearDatos(a, resultados);
+                                close(pst, resultados);
+                                return a;
+                            default:
+                                break;
+                        }
+                    }
                 }
             }
         } catch (SQLException ex) {
@@ -99,25 +101,25 @@ public class CargasDB {
         System.out.println("conecta db para buscar c");
         try {
             System.out.println("entra al nombre");
-            PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_articulo");
-            ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");
-            while (rs.next()) {
-                switch (rs.getString("Art_Categ")) {
-                    case "telefono":
-                        Telefono telefono = new Telefono(rs.getString("Art_Modelo"), rs.getString("Art_Marca"), rs.getString("Art_Categ"), rs.getString("Art_Color"), rs.getFloat("Art_Precio"), rs.getInt("Art_Stock"));
-                        articulosDisponibles.add(telefono);
-                        break;
-                    case "camara":
-                        Camara camara = new Camara(rs.getString("Art_Modelo"), rs.getString("Art_Marca"), rs.getString("Art_Categ"), rs.getString("Art_Color"), rs.getFloat("Art_Precio"), rs.getInt("Art_Stock"));
-                        articulosDisponibles.add(camara);
-                        break;
-                    case "consolaVideoJuegos":
-                        ConsolaVideoJuegos consola = new ConsolaVideoJuegos(rs.getString("Art_Modelo"), rs.getString("Art_Marca"), rs.getString("Art_Categ"), rs.getString("Art_Color"), rs.getFloat("Art_Precio"), rs.getInt("Art_Stock"));
-                        articulosDisponibles.add(consola);
-                        break;
-                    default:
-                        break;
+            try (PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_articulo"); ResultSet rs = pst.executeQuery()) {
+                System.out.println("ejecucion del query");
+                while (rs.next()) {
+                    switch (rs.getString("Art_Categ")) {
+                        case "telefono":
+                            Telefono telefono = new Telefono(rs.getString("Art_Modelo"), rs.getString("Art_Marca"), rs.getString("Art_Categ"), rs.getString("Art_Color"), rs.getFloat("Art_Precio"), rs.getInt("Art_Stock"));
+                            articulosDisponibles.add(telefono);
+                            break;
+                        case "camara":
+                            Camara camara = new Camara(rs.getString("Art_Modelo"), rs.getString("Art_Marca"), rs.getString("Art_Categ"), rs.getString("Art_Color"), rs.getFloat("Art_Precio"), rs.getInt("Art_Stock"));
+                            articulosDisponibles.add(camara);
+                            break;
+                        case "consolaVideoJuegos":
+                            ConsolaVideoJuegos consola = new ConsolaVideoJuegos(rs.getString("Art_Modelo"), rs.getString("Art_Marca"), rs.getString("Art_Categ"), rs.getString("Art_Color"), rs.getFloat("Art_Precio"), rs.getInt("Art_Stock"));
+                            articulosDisponibles.add(consola);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             return articulosDisponibles;

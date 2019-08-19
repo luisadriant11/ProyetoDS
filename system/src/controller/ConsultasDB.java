@@ -16,33 +16,38 @@ public class ConsultasDB {
     private Connection conexion;
     private PreparedStatement pst;
     private LinkedList<LinkedList<String>> datosArt;
+    private Logger logger;
 
     public ConsultasDB() {
         this.conexion = new ConexionDBM().establecerConexion(conexion);
+        logger = Logger.getLogger(ConsultasDB.class.getName());
            
     }
 
     public LinkedList<LinkedList<String>> consultarArticulo(String modo, String campo) {         
-        System.out.println("conecta db para articulo");
-        if (modo.equals("nombre")) {
-            return consultaNombre(campo);
-        } else if (modo.equals("descripción")) {
-            return consultaDescripcion(campo);
-        } else if (modo.equals("categoría")) {
-            return consultaCategoria(campo);
-        }            
+        logger.info("conecta db para articulo");
+        switch (modo) {
+            case "nombre":
+                return consultaNombre(campo);
+            case "descripción":
+                return consultaDescripcion(campo);
+            case "categoría":
+                return consultaCategoria(campo);            
+            default:
+                break;
+        }
         return null;
     }
     
     public LinkedList<String> consultarClienteDB(String cedula) {
         LinkedList<String> datos = new LinkedList<>();
-        System.out.println("conecta db para buscar c");
+        logger.info("conecta db para buscar c");
         try {
-            System.out.println("entra al nombre");
+            logger.info("entra al nombre");
             pst = conexion.prepareStatement("SELECT * FROM t_cliente WHERE Cli_Cedula = ?");
             pst.setString(1, cedula);
             ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");
+            logger.info("ejecucion del query");
             while (rs.next()) {
                 String nombre = rs.getString("Cli_Nombre");
                 String apellido = rs.getString("Cli_Apellido");
@@ -57,7 +62,7 @@ public class ConsultasDB {
             }
             return datos;
         } catch (SQLException ex) {
-            System.out.println("Error al no encontrar el producto en la db");
+            logger.info("Error al no encontrar el producto en la db");
             System.out.println(ex);
         }
         return null;
@@ -65,16 +70,16 @@ public class ConsultasDB {
 
     private LinkedList<LinkedList<String>> consultaNombre(String campo) {
         datosArt = new LinkedList<>();
-        System.out.println("antes del try para articulo");
+        logger.info("antes del try para articulo");
         try {
-            System.out.println("entra al nombre");
+            logger.info("entra al nombre");
             pst = conexion.prepareStatement("SELECT * FROM t_articulo WHERE Art_Modelo = ?");
             pst.setString(1, campo);
             ResultSet rs = pst.executeQuery();
             guardarDatosArt(rs, datosArt);
             return datosArt;
         } catch (SQLException ex) {
-            System.out.println("Error al no encontrar el producto en la db");
+            logger.info("Error al no encontrar el producto en la db");
             System.out.println(ex);
         }
         return null;
@@ -82,16 +87,16 @@ public class ConsultasDB {
 
     private LinkedList<LinkedList<String>> consultaDescripcion(String campo) {
         datosArt = new LinkedList<>();
-        System.out.println("antes del try para articulo");
+        logger.info("antes del try para articulo");
         try {
-            System.out.println("entra a la descripcion");
+            logger.info("entra a la descripcion");
             pst = conexion.prepareStatement("SELECT * FROM t_articulo WHERE Art_Descripcion LIKE ?");
             pst.setString(1, "%" + campo + "%");
             ResultSet rs = pst.executeQuery();
             guardarDatosArt(rs, datosArt);
             return datosArt;
         } catch (SQLException ex) {
-            System.out.println("Error al no encontrar el producto en la db");
+            logger.info("Error al no encontrar el producto en la db");
             System.out.println(ex);
         }
         return null;
@@ -99,16 +104,16 @@ public class ConsultasDB {
 
     private LinkedList<LinkedList<String>> consultaCategoria(String campo) {
         datosArt = new LinkedList<>();
-        System.out.println("antes del try para articulo");
+        logger.info("antes del try para articulo");
         try {
-            System.out.println("entra a la categoria");
+            logger.info("entra a la categoria");
             pst = conexion.prepareStatement("SELECT * FROM t_articulo WHERE Art_Categ = ?");
             pst.setString(1, campo);
             ResultSet rs = pst.executeQuery();
             guardarDatosArt(rs, datosArt);
             return datosArt;
         } catch (SQLException ex) {
-            System.out.println("Error al no encontrar el producto en la db");
+            logger.info("Error al no encontrar el producto en la db");
             System.out.println(ex);
         }return null;
     }

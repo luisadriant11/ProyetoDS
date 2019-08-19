@@ -17,16 +17,20 @@ import model.Strategy.Efectivo;
 import model.Strategy.FormaPago;
 import model.Vendedor;
 import model.Venta;
+import java.util.logging.Logger; 
+
 
 /**
  *
  */
 public class IngresosDB {
 
-    private Connection conexion;    
+    private Connection conexion;
+    private Logger logger;
 
     public IngresosDB() {
         this.conexion = new ConexionDBM().establecerConexion(conexion);
+        logger = Logger.getLogger(IngresosDB.class.getName());
     }
 
     public void agregarClienteDB(Cliente cliente) {
@@ -42,14 +46,14 @@ public class IngresosDB {
             int res = pst.executeUpdate();
             if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Cliente ingresado éxitosamente en el sistema");
-                System.out.println("ususario bien");
+                logger.info("ususario bien");
             } else {
                 JOptionPane.showMessageDialog(null, "Cliente no ingresado éxitosamente en el sistema");
-                System.out.println("usuario mal");
+                logger.info("usuario mal");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Cliente no ingresado éxitosamente en el sistema");
-            System.out.println("usuario mal");
+            logger.info("usuario mal");
             System.out.println(ex.getMessage());
         }
     }
@@ -57,17 +61,17 @@ public class IngresosDB {
     private int getIDVendedor(Vendedor vendedor) {
         int id = 0;
         try {
-            System.out.println("entra al nombre");
+            logger.info("entra al nombre");
             PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_usuario WHERE cedula = ?");
             pst.setString(1, vendedor.getCedula());
             ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");
+            logger.info("ejecucion del query");
             while (rs.next()) {
                 id = rs.getInt("id_user");
             }
             return id;
         } catch (SQLException ex) {
-            System.out.println("Error usuario venta");
+            logger.info("Error usuario venta");
             System.out.println(ex);
         }
         return id;
@@ -76,17 +80,17 @@ public class IngresosDB {
     private int getIDCliente(String cedula) {
         int id = 0;
         try {
-            System.out.println("entra al nombre");
+            logger.info("entra al nombre");
             PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_cliente WHERE Cli_Cedula = ?");
             pst.setString(1, cedula);
             ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");
+            logger.info("ejecucion del query");
             while (rs.next()) {
                 id = rs.getInt("Cli_id");
             }
             return id;
         } catch (SQLException ex) {
-            System.out.println("Error cliente venta");
+            logger.info("Error cliente venta");
             System.out.println(ex);
         }
         return id;
@@ -103,12 +107,12 @@ public class IngresosDB {
             pst.setString(6, venta.getCodigo());
             int res = pst.executeUpdate();
             if (res > 0) {
-                System.out.println("venta bien");
+                logger.info("venta bien");
             } else {
-                System.out.println("venta mal");
+                logger.info("venta mal");
             }
         } catch (SQLException ex) {
-            System.out.println("venta mal");
+            logger.info("venta mal");
             System.out.println(ex.getMessage());
         }
     }
@@ -116,17 +120,17 @@ public class IngresosDB {
     private int getIDVenta(Venta venta) {
         int id = 0;
         try {
-            System.out.println("entra al nombre");
+            logger.info("entra al nombre");
             PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_venta WHERE Venta_Cod = ?");
             pst.setString(1, venta.getCodigo());
             ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");
+            logger.info("ejecucion del query");
             while (rs.next()) {
                 id = rs.getInt("Venta_ID");
             }
             return id;
         } catch (SQLException ex) {
-            System.out.println("Error cliente venta");
+            logger.info("Error cliente venta");
             System.out.println(ex);
         }
         return id;
@@ -149,13 +153,13 @@ public class IngresosDB {
             pst.setInt(4, getIDVenta(venta));
             int res = pst.executeUpdate();
             if (res > 0) {
-                System.out.println("pagoe bien");
+               logger.info("pagoe bien");
             } else {
-                System.out.println("pagoe mal");
+                logger.info("pagoe mal");
             }
         } catch (SQLException ex) {
-            System.out.println("pagoe mal");
-            System.out.println(ex.getMessage());
+            logger.info("pagoe mal");
+            logger.info(ex.getMessage());
         }
     }
 
@@ -178,30 +182,30 @@ public class IngresosDB {
             }
             int res = pst.executeUpdate();
             if (res > 0) {
-                System.out.println("pagoc bien");
+                logger.info("pagoc bien");
             } else {
-                System.out.println("pagoc mal");
+                logger.info("pagoc mal");
             }
         } catch (SQLException ex) {
-            System.out.println("pagoc mal");
-            System.out.println(ex.getMessage());
+            logger.info("pagoc mal");
+            logger.info(ex.getMessage());
         }
     }
 
     private int getIDArt(String modelo) {
         int id = 0;
         try {
-            System.out.println("entra al nombre");
+            logger.info("entra al nombre");
             PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_articulo WHERE Art_Modelo = ?");
             pst.setString(1, modelo);
             ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");
+            logger.info("ejecucion del query");
             while (rs.next()) {
                 id = rs.getInt("Art_ID");
             }
             return id;
         } catch (SQLException ex) {
-            System.out.println("Error id art");
+            logger.info("Error id art");
             System.out.println(ex);
         }
         return id;
@@ -216,13 +220,13 @@ public class IngresosDB {
                 pst.setInt(2, getIDArt(p));
                 int res = pst.executeUpdate();
                 if (res > 0) {
-                    System.out.println("detallev bien");
+                    logger.info("detallev bien");
                 } else {
-                    System.out.println("detallev mal");
+                    logger.info("detallev mal");
                 }
             } catch (SQLException ex) {
-                System.out.println("detallev mal");
-                System.out.println(ex.getMessage());
+                logger.info("detallev mal");
+                logger.info(ex.getMessage());
             }
         }
     }
@@ -240,15 +244,15 @@ public class IngresosDB {
             int res = pst.executeUpdate();
             if (res > 0) {
                 JOptionPane.showMessageDialog(null, "Articulo registrado con éxito");
-                System.out.println("articulo bien");
+                logger.info("articulo bien");
             } else {
                 JOptionPane.showMessageDialog(null, "Articulo no registrado con éxito");
-                System.out.println("articulo mal");
+                logger.info("articulo mal");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en el sistema");
-            System.out.println("art mal");
-            System.out.println(ex.getMessage());
+            logger.info("art mal");
+            logger.info(ex.getMessage());
         }
     }
 }

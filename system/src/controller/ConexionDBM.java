@@ -19,22 +19,24 @@ public class ConexionDBM {
 
     private final String URL = "jdbc:mysql://localhost:3306/tecnoImportDB";
     private final String USERNAME = "root";
-    private final String PASSWORD = "root";    
+    private final String PASSWORD = "root";      
+    private Logger logger;
 
     public Connection establecerConexion(Connection conexion) {
+        logger = Logger.getLogger(ConsultasDB.class.getName());
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conexion = (Connection) DriverManager.getConnection(this.URL, this.USERNAME, this.PASSWORD);
-            System.out.println("Conexion exitosa");
+            logger.info("Conexion exitosa");
             return conexion;
         } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
+            logger.info(ex.getMessage());
             conexion = null;
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            logger.info(ex.getMessage());
             conexion = null;
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            logger.info(ex.getMessage());
             conexion = null;
         }
         return conexion;
@@ -43,7 +45,7 @@ public class ConexionDBM {
     public void cerrarConexion(Connection conexion) {
         try {
             conexion.close();
-            System.out.println("Servidor desconectado");
+            logger.info("Servidor desconectado");
         } catch (SQLException ex) {
             Logger.getLogger(ConexionDBM.class.getName()).log(Level.SEVERE, null, ex);
         }
