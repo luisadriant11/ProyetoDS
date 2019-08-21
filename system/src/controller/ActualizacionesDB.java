@@ -37,6 +37,26 @@ public class ActualizacionesDB {
         }return null;
     }
     
+    public void actualizarPermisos(String usuario,String tipo){
+        try{
+            pst = conexion.prepareStatement("UPDATE t_usuario SET tipo = ?, WHERE usuario = ?");
+            pst.setString(1, tipo);
+            pst.setString(2, usuario);
+            int rs=pst.executeUpdate();
+            if (rs > 0) {
+                mostrarMensaje( "USUARIO ACTUALIZADO EXITOSAMENTE!");
+                System.out.println("usu bien");
+            } else {
+                mostrarMensaje( "USUARIO NO ACTUALIZADO EXITOSAMENTE!");
+                System.out.println("usu mal");
+            }
+            
+        }catch (SQLException ex) {
+            System.out.println("Error al cargar usuarios en la db");
+            System.out.println(ex);
+        }
+    }
+    
     public void actualizarVenta(String codigo, Double subtotal, Double total){
         try {
             pst = conexion.prepareStatement("UPDATE t_venta SET Venta_Subtotal = ?, Venta_Total = ? WHERE Venta_Cod = ?");

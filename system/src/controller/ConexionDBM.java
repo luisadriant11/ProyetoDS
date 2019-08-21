@@ -17,9 +17,9 @@ import java.util.logging.Logger;
 
 public class ConexionDBM {
 
-    private final String URL = "jdbc:mysql://localhost:3306/tecnoImportDB";
+    private final String URL = "jdbc:mysql://localhost:3306/tecno";
     private final String USERNAME = "root";
-    private final String PASSWORD = "root";      
+    private final String PASSWORD = "gustavito";      
     private Logger logger;
 
     public Connection establecerConexion(Connection conexion) {

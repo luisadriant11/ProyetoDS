@@ -1,6 +1,6 @@
-drop database if exists tecnoImportDB;
-create database tecnoImportDB;
-use tecnoImportDB;
+
+create database tecno;
+use tecno;
 
 create table t_cliente(
     Cli_id int auto_increment primary key,		
@@ -33,7 +33,7 @@ create table t_sucursal(
     ); 
 
 CREATE TABLE t_usuario(
-  id_user int NOT NULL AUTO_INCREMENT primary key,
+  id_user int AUTO_INCREMENT primary key,
   nombre varchar(50) NOT NULL,
   apellido varchar(50) NOT NULL,
   fecha_nacimiento date NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE t_usuario(
   foreign key(Local_ID) references t_sucursal(Local_ID) 
 );
 create table t_venta(
-	Venta_ID int AUTO_INCREMENT primary key,
+	Venta_ID int NOT NULL AUTO_INCREMENT primary key,
 	Venta_Fecha date not null,
     Venta_Subtotal double not null,
 	Venta_Total double not null,
@@ -112,5 +112,6 @@ INSERT INTO t_cliente (Cli_id,Cli_Cedula,Cli_Nombre,Cli_Apellido,Cli_Direccion,C
 INSERT INTO t_articulo (Art_ID,Art_Modelo,Art_Descripcion,Art_Precio,Art_Stock,Art_Categ,Art_Marca,Art_Color) VALUES (1,"Dawson","adipiscing elit. Curabitur sed tortor.",661,1,"telefono","Borland","amarillo"),(2,"Cooley","Sed et libero. Proin mi.",675,5,"consolaVideoJuegos","Microsoft","naranja"),(3,"Lynch","fermentum risus, at fringilla purus",826,1,"telefono","Cakewalk","violeta"),(4,"Moore","aliquet, sem ut cursus luctus,",231,4,"telefono","Adobe","naranja"),(5,"Hale","Morbi sit amet massa. Quisque",629,3,"telefono","Altavista","amarillo"),(6,"Mercer","eget magna. Suspendisse tristique neque",104,2,"camara","Lavasoft","verde"),(7,"Morton","nulla ante, iaculis nec, eleifend",873,8,"consolaVideoJuegos","Lavasoft","rojo"),(8,"Dale","Fusce dolor quam, elementum at,",148,2,"telefono","Finale","rojo"),(9,"Henry","id, erat. Etiam vestibulum massa",129,5,"camara","Sibelius","naranja"),(10,"Kennedy","eu, euismod ac, fermentum vel,",780,10,"consolaVideoJuegos","Lavasoft","naranja");
 INSERT INTO t_sucursal (Local_ID,Local_Telefono,Local_Direccion,esMatriz,esSucursal) VALUES (1,"2746184417","Apartado núm.: 219, 2563 Ante Ctra.",1,0),(2,"7248196111","526 Eu Ctra.",0,0),(3,"0799441621","3307 Tempor Ctra.",1,0),(4,"0678346445","7559 Eu Avenida",0,0),(5,"2412381854","937-7509 Ultrices Avenida",0,1),(6,"6959565031","650-1422 Phasellus ",0,1),(7,"6253883268","Apartado núm.: 827, 3138 Luctus C/",0,1),(8,"5760070408","Apdo.:838-5988 Aenean ",0,0),(9,"9104066172","9883 Scelerisque Ctra.",0,0),(10,"9345103627","3938 Mattis. ",1,0);
 INSERT INTO t_usuario (id_user,nombre,fecha_nacimiento,telefono,direccion,correo,usuario,pass,tipo,esSuper,Local_ID,cedula,apellido) VALUES (1,"Gustavo","2006/04/01","6262871098","962 Ipsum. Avenida","nulla.Integer@etultricesposuere.ca","Gustavo","gustavo","a",1,1,"6246252533","Matamoros"),(2,"Gabriela","2006/04/01","6262871098","962 Ipsum. Avenida","nulla.Integer@etultricesposuere.ca","Gabriela","gabriela","g",1,1,"6246252533","Cuadros"),(3,"Adrian","2006/04/01","6262871098","962 Ipsum. Avenida","nulla.Integer@etultricesposuere.ca","Adrian","adrian","v",1,1,"6246252533","Tomala");
-select * from t_usuario;
+INSERT INTO t_venta (Venta_ID,Venta_Fecha,Venta_Subtotal,Venta_Total,Cliente_ID,Usua_ID,Venta_Cod) VALUES (1,"2018/08/15",9,5,1,2,"Hard"),(2,"2018/08/03",10,7,2,2,"Soye"),(3,"2018/08/08",8,6,3,1,"Sainte-Marie-Chevigny"),(4,"2018/08/04",3,10,4,2,"Naumburg"),(5,"2018/08/14",10,2,5,1,"San Donato di Ninea"),(6,"2018/08/14",2,9,6,2,"Arsimont"),(7,"2018/08/03",1,6,7,3,"Ajmer"),(8,"2018/08/13",5,2,8,3,"Enschede"),(9,"2018/08/13",9,7,9,1,"Assen"),(10,"2018/08/11",2,9,10,2,"Armo");select * from t_usuario;
 select * from t_articulo;
+select * from t_venta;

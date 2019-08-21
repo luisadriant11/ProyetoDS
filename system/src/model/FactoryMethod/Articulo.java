@@ -26,6 +26,10 @@ public abstract class Articulo {
         this.marca = marca;
         this.color = color;
     }
+    
+    public Articulo(){
+        
+    }
 
     public abstract void setDescripcion();
 

@@ -8,6 +8,11 @@ public class ConsolaVideoJuegos extends Articulo {
     public ConsolaVideoJuegos(String modelo, String marca, String categoria, String color, float precio, int stock) {
         super(modelo, marca, categoria, color, precio, stock);
     }
+    public ConsolaVideoJuegos(){
+        super.descripcion="";
+        rendimiento=0;
+        memoria=0;
+    }
 
     @Override
     public void setDescripcion() {

@@ -97,6 +97,8 @@ public class IngresosDB {
     }
 
     public void ingresarVentaDB(Venta venta, Vendedor vendedor, String cedulaCliente) {
+        
+        
         try {
             PreparedStatement pst = conexion.prepareStatement("INSERT INTO t_venta (Venta_Fecha, Venta_Subtotal, Venta_Total, Cliente_ID, Usua_ID, Venta_Cod) VALUES (?,?,?,?,?,?)");
             pst.setDate(1, Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(venta.getFecha())));
@@ -105,6 +107,12 @@ public class IngresosDB {
             pst.setInt(4, getIDCliente(cedulaCliente));
             pst.setInt(5, getIDVendedor(vendedor));
             pst.setString(6, venta.getCodigo());
+//              pst.setDate(1, Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(venta.getFecha())));
+//            pst.setDouble(2, 661.0);
+//            pst.setDouble(3, 740.32);
+//            pst.setInt(4, 1);
+//            pst.setInt(5, 3);
+//            pst.setString(6, venta.getCodigo());  
             int res = pst.executeUpdate();
             if (res > 0) {
                 logger.info("venta bien");
@@ -118,7 +126,8 @@ public class IngresosDB {
     }
 
     private int getIDVenta(Venta venta) {
-        int id = 0;
+        int id = 1;
+        System.out.println(id);
         try {
             logger.info("entra al nombre");
             PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_venta WHERE Venta_Cod = ?");
@@ -133,6 +142,7 @@ public class IngresosDB {
             logger.info("Error cliente venta");
             System.out.println(ex);
         }
+        System.out.println(id);
         return id;
     }
 
@@ -201,6 +211,7 @@ public class IngresosDB {
             ResultSet rs = pst.executeQuery();
             logger.info("ejecucion del query");
             while (rs.next()) {
+                
                 id = rs.getInt("Art_ID");
             }
             return id;

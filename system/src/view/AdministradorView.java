@@ -1,6 +1,8 @@
 package view;
 
+import controller.ActualizacionesDB;
 import java.awt.Color;
+import java.util.logging.Logger;
 import model.Administrador;
 import model.FactoryMethod.Articulo;
 import model.FactoryMethod.ArticuloFactory;
@@ -17,7 +19,9 @@ public class AdministradorView extends javax.swing.JFrame {
     private String categoriaArticulo;
     private Administrador administrador;
     private PanelConsultaArticulo panelCA;
-    ArticuloFactory factory = new ArticuloFactory();
+    ArticuloFactory factory = new ArticuloFactory();      
+    private Logger logger;
+    private ActualizacionesDB act;
             
 
     public AdministradorView(Administrador administrador) {
@@ -32,6 +36,11 @@ public class AdministradorView extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(jTabbedPane1.indexOfTab("MENU DE VENTAS"), false);
         jTabbedPane3.setEnabledAt(jTabbedPane3.indexOfTab("ACTUALIZAR"), false);
         jTabbedPane3.setEnabledAt(jTabbedPane3.indexOfTab("ELIMINAR"), false);
+        categoria.removeAllItems();
+        categoria.addItem("telefono");
+        categoria.addItem("camara");
+        categoria.addItem("consolaVideoJuegos");
+        logger = Logger.getLogger(AdministradorView.class.getName());
     }
 
     /**
@@ -85,6 +94,19 @@ public class AdministradorView extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        seleccionUsuario = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        seleccionPermiso = new javax.swing.JComboBox<>();
+        seleccionActivacion = new javax.swing.JComboBox<>();
+        confirmarPermisos = new javax.swing.JButton();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        usuarioPermisos = new javax.swing.JTextField();
+        cambiarPermisos = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        comfirmarCambios = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
@@ -283,7 +305,7 @@ public class AdministradorView extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(colores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -364,7 +386,7 @@ public class AdministradorView extends javax.swing.JFrame {
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         jTabbedPane4.addTab("AGREGAR", jPanel10);
@@ -379,7 +401,7 @@ public class AdministradorView extends javax.swing.JFrame {
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         jTabbedPane4.addTab("ACTUALIZAR", jPanel11);
@@ -394,7 +416,7 @@ public class AdministradorView extends javax.swing.JFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         jTabbedPane4.addTab("CONSULTAR", jPanel12);
@@ -409,7 +431,7 @@ public class AdministradorView extends javax.swing.JFrame {
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         jTabbedPane4.addTab("ELIMINAR", jPanel13);
@@ -440,7 +462,7 @@ public class AdministradorView extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("AGREGAR", jPanel4);
@@ -455,7 +477,7 @@ public class AdministradorView extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("ACTUALIZAR", jPanel5);
@@ -470,7 +492,7 @@ public class AdministradorView extends javax.swing.JFrame {
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("CONSULTAR", jPanel14);
@@ -485,7 +507,7 @@ public class AdministradorView extends javax.swing.JFrame {
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 296, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("ELIMINAR", jPanel15);
@@ -502,6 +524,136 @@ public class AdministradorView extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("MENU DE USUARIO", jPanel3);
+
+        seleccionUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Gerente", "Administrador jk" }));
+        seleccionUsuario.setToolTipText("");
+        seleccionUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionUsuarioActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Usuario");
+
+        jLabel11.setText("Permiso");
+
+        seleccionPermiso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Create", "Read", "Update", "Delete" }));
+
+        seleccionActivacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activar", "Desactivar" }));
+        seleccionActivacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionActivacionActionPerformed(evt);
+            }
+        });
+
+        confirmarPermisos.setText("Confirmar Permisos");
+        confirmarPermisos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarPermisosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(seleccionActivacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(seleccionPermiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(146, 146, 146)
+                                .addComponent(seleccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(confirmarPermisos)))
+                .addContainerGap(296, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel10)
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(seleccionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(seleccionPermiso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(seleccionActivacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(confirmarPermisos)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("PERMISOS", jPanel8);
+
+        jLabel12.setText("Usuario");
+
+        usuarioPermisos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioPermisosActionPerformed(evt);
+            }
+        });
+
+        cambiarPermisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Administrador", "gerente" }));
+
+        jLabel13.setText("Cambiar a");
+
+        comfirmarCambios.setText("Confirmar");
+        comfirmarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comfirmarCambiosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addGap(144, 144, 144)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(comfirmarCambios)
+                    .addComponent(cambiarPermisos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(usuarioPermisos))
+                .addContainerGap(335, Short.MAX_VALUE))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(usuarioPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cambiarPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(78, 78, 78)
+                .addComponent(comfirmarCambios)
+                .addContainerGap(103, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("PERMISOS", jPanel16);
 
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Light", 1, 14)); // NOI18N
         jLabel1.setText("BIENVENIDO, ");
@@ -566,13 +718,13 @@ public class AdministradorView extends javax.swing.JFrame {
         float precio = Float.parseFloat(precio1.getText());
         int cantidad = Integer.parseInt(stock.getText());
         art = factory.crearArticulo(modelo.getText(), marca.getText(), categoriaArticulo, color, precio, cantidad);
-        if ("Refrigeradora".equalsIgnoreCase(categoriaArticulo)) {
-            cambiarValores("Altura", "Numero de puertas");
-        } else if ("lavadora".equalsIgnoreCase(categoriaArticulo)) {
-            cambiarValores("Capacidad de carga", "Tipo");
+        if ("ConsolaVideoJuegos".equalsIgnoreCase(categoriaArticulo)) {
+            cambiarValores("rendimiento", "memoria");
+        } else if ("Camara".equalsIgnoreCase(categoriaArticulo)) {
+            cambiarValores("capacidadMemoria", "Tipo");
 
-        } else if ("cocina".equalsIgnoreCase(categoriaArticulo)) {
-            valor1.setText("Numero de hornillas");
+        } else if ("telefono".equalsIgnoreCase(categoriaArticulo)) {
+            valor1.setText("Numero de camaras");
             valor2.setVisible(false);
             campo2.setVisible(false);
             siHorno.setVisible(true);
@@ -609,22 +761,26 @@ public class AdministradorView extends javax.swing.JFrame {
         
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if ("Refrigeradora".equalsIgnoreCase(categoriaArticulo)) {
-            ConsolaVideoJuegos r = (ConsolaVideoJuegos) art;
+        logger.info((String) categoria.getSelectedItem());
+        if ("consolaVideoJuegos".equalsIgnoreCase((String) categoria.getSelectedItem())) {
+            //(ConsolaVideoJuegos) art = new ConsolaVideoJuegos();
+            ConsolaVideoJuegos r= new ConsolaVideoJuegos(modelo.getText(),marca.getText(),(String)categoria.getSelectedItem(),(String)colores.getSelectedItem(),Float.parseFloat(precio1.getText()),Integer.parseInt(stock.getText()));
             r.setRendimiento(Integer.parseInt(campo1.getText()));
             r.setMemoria(Integer.parseInt(campo2.getText()));
             r.setDescripcion();
             administrador.agregarArticulo(r);
            
-        } else if ("Cocina".equalsIgnoreCase(categoriaArticulo)) {
-            Telefono c = (Telefono) art;
+        } else if ("telefono".equalsIgnoreCase((String) categoria.getSelectedItem())) {
+            //Telefono c = (Telefono) art;
+                        Telefono c= new Telefono(modelo.getText(),marca.getText(),(String)categoria.getSelectedItem(),(String)colores.getSelectedItem(),Float.parseFloat(precio1.getText()),Integer.parseInt(stock.getText()));
             c.setNumCamaras(Integer.parseInt(campo1.getText()));
             c.setTieneSeguridadBiometrica(siHorno.isSelected());
             c.setDescripcion();
             administrador.agregarArticulo(c);
-        }
-        if ("Lavadora".equalsIgnoreCase(categoriaArticulo)) {
-            Camara l = (Camara) art;
+        }else if ("camara".equalsIgnoreCase((String) categoria.getSelectedItem())) {
+            //Camara l = (Camara) art;
+            Camara l= new Camara(modelo.getText(),marca.getText(),(String)categoria.getSelectedItem(),(String)colores.getSelectedItem(),Float.parseFloat(precio1.getText()),Integer.parseInt(stock.getText()));
+
             l.setCapacidadMemoria(Integer.parseInt(campo1.getText()));
             l.setTipo(campo2.getText());
             l.setDescripcion();
@@ -637,20 +793,62 @@ public class AdministradorView extends javax.swing.JFrame {
     private void siHornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siHornoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_siHornoActionPerformed
+
+    private void seleccionActivacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionActivacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_seleccionActivacionActionPerformed
+
+    private void confirmarPermisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarPermisosActionPerformed
+        
+    }//GEN-LAST:event_confirmarPermisosActionPerformed
+
+    private void seleccionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_seleccionUsuarioActionPerformed
+
+    private void usuarioPermisosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioPermisosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioPermisosActionPerformed
+
+    private void comfirmarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comfirmarCambiosActionPerformed
+            // TODO add your handling code here:
+            try{
+            String t = null;
+            String usu=usuarioPermisos.getText();
+            String tipo=(String) cambiarPermisos.getSelectedItem();
+            if (tipo.equalsIgnoreCase("vendedor")){
+                t="v";
+            } else if (tipo.equalsIgnoreCase("gerente")){
+                t="g";
+            }else if (tipo.equalsIgnoreCase("administrador")){
+                t="a";
+            }
+            act.actualizarPermisos(usu, t);
+            }catch(Exception e){
+                System.out.println("No existe usuario");
+            }
+    }//GEN-LAST:event_comfirmarCambiosActionPerformed
     private void cambiarValores(String campo1, String campo2) {
         valor1.setText(campo1);
         valor2.setText(campo2);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cambiarPermisos;
     private javax.swing.JTextField campo1;
     private javax.swing.JTextField campo2;
     private javax.swing.JComboBox<String> categoria;
     private javax.swing.JComboBox<String> colores;
+    private javax.swing.JButton comfirmarCambios;
+    private javax.swing.JButton confirmarPermisos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -666,12 +864,14 @@ public class AdministradorView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTabbedPane jTabbedPane1;
@@ -683,9 +883,13 @@ public class AdministradorView extends javax.swing.JFrame {
     private javax.swing.JTextField modelo;
     private javax.swing.JPanel panel;
     private javax.swing.JTextField precio1;
+    private javax.swing.JComboBox<String> seleccionActivacion;
+    private javax.swing.JComboBox<String> seleccionPermiso;
+    private javax.swing.JComboBox<String> seleccionUsuario;
     private javax.swing.JRadioButton siHorno;
     private javax.swing.JTextField stock;
     private javax.swing.JLabel tieneHorno;
+    private javax.swing.JTextField usuarioPermisos;
     private javax.swing.JLabel valor1;
     private javax.swing.JLabel valor2;
     // End of variables declaration//GEN-END:variables
