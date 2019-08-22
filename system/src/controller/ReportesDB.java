@@ -34,12 +34,14 @@ public class ReportesDB {
         datosRep = new LinkedList<LinkedList<String>>();
         try {
             System.out.println("entra al nombre");
-            PreparedStatement pst = conexion.prepareStatement("select v.Usua_ID as id, u.nombre as nombre, count(*) as cantidad, sum(v.Venta_Total) as total from t_usuario u, t_venta v where v.Usua_ID = u.id_user and v.Venta_Fecha between ? and ? group by v.Usua_ID;");
-            pst.setDate(1, Date.valueOf(fechas.get(0)));
-            pst.setDate(2, Date.valueOf(fechas.get(1)));
-            ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");           
-            guardarDatosRep(rs, datosRep);
+            try (PreparedStatement pst = conexion.prepareStatement("select v.Usua_ID as id, u.nombre as nombre, count(*) as cantidad, sum(v.Venta_Total) as total from t_usuario u, t_venta v where v.Usua_ID = u.id_user and v.Venta_Fecha between ? and ? group by v.Usua_ID;")) {
+                pst.setDate(1, Date.valueOf(fechas.get(0)));
+                pst.setDate(2, Date.valueOf(fechas.get(1)));
+                try (ResultSet rs = pst.executeQuery()) {
+                    System.out.println("ejecucion del query");
+                    guardarDatosRep(rs, datosRep);
+                }
+            }
             return datosRep;
         } catch (SQLException ex) {
             System.out.println("Error al no encontrar el producto en la db");
@@ -52,12 +54,13 @@ public class ReportesDB {
         datosRep = new LinkedList<LinkedList<String>>();
         try {
             System.out.println("entra al nombre");
-            PreparedStatement pst = conexion.prepareStatement("select dv.Articulo_ID as id, a.Art_Modelo as nombre, count(*) as cantidad, sum(v.Venta_Total) as total from t_articulo a, t_venta v, t_detalle_venta dv where dv.Venta_ID = v.Venta_ID and dv.Articulo_ID = a.Art_ID and v.Venta_Fecha between ? and ? group by dv.Articulo_ID;");
-            pst.setDate(1, Date.valueOf(fechas.get(0)));
-            pst.setDate(2, Date.valueOf(fechas.get(1)));
-            ResultSet rs = pst.executeQuery();
-            System.out.println("ejecucion del query");            
-            guardarDatosRep(rs, datosRep);
+            try (PreparedStatement pst = conexion.prepareStatement("select dv.Articulo_ID as id, a.Art_Modelo as nombre, count(*) as cantidad, sum(v.Venta_Total) as total from t_articulo a, t_venta v, t_detalle_venta dv where dv.Venta_ID = v.Venta_ID and dv.Articulo_ID = a.Art_ID and v.Venta_Fecha between ? and ? group by dv.Articulo_ID;")) {
+                pst.setDate(1, Date.valueOf(fechas.get(0)));
+                pst.setDate(2, Date.valueOf(fechas.get(1)));
+                ResultSet rs = pst.executeQuery();
+                System.out.println("ejecucion del query");
+                guardarDatosRep(rs, datosRep);
+            }
             return datosRep;
         } catch (SQLException ex) {
             System.out.println("Error al no encontrar el producto en la db");

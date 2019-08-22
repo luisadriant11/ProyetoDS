@@ -46,20 +46,22 @@ public class ConsultasDB {
             logger.info("entra al nombre");
             pst = conexion.prepareStatement("SELECT * FROM t_cliente WHERE Cli_Cedula = ?");
             pst.setString(1, cedula);
-            ResultSet rs = pst.executeQuery();
-            logger.info("ejecucion del query");
-            while (rs.next()) {
-                String nombre = rs.getString("Cli_Nombre");
-                String apellido = rs.getString("Cli_Apellido");
-                String telefono = rs.getString("Cli_Telefono");
-                String direccion = rs.getString("Cli_Direccion");
-                String correo = rs.getString("Cli_email");
-                datos.add(nombre);
-                datos.add(apellido);
-                datos.add(telefono);
-                datos.add(direccion);
-                datos.add(correo);
+            try (ResultSet rs = pst.executeQuery()) {
+                logger.info("ejecucion del query");
+                while (rs.next()) {
+                    String nombre = rs.getString("Cli_Nombre");
+                    String apellido = rs.getString("Cli_Apellido");
+                    String telefono = rs.getString("Cli_Telefono");
+                    String direccion = rs.getString("Cli_Direccion");
+                    String correo = rs.getString("Cli_email");
+                    datos.add(nombre);
+                    datos.add(apellido);
+                    datos.add(telefono);
+                    datos.add(direccion);
+                    datos.add(correo);
+                }
             }
+            pst.close();
             return datos;
         } catch (SQLException ex) {
             logger.info("Error al no encontrar el producto en la db");

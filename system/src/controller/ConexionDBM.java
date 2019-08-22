@@ -19,7 +19,7 @@ public class ConexionDBM {
 
     private final String URL = "jdbc:mysql://localhost:3306/tecno";
     private final String USERNAME = "root";
-    private final String PASSWORD = "gustavito";      
+    private final String PASSWORD = "root";      
     private Logger logger;
 
     public Connection establecerConexion(Connection conexion) {
@@ -31,15 +31,12 @@ public class ConexionDBM {
             return conexion;
         } catch (ClassNotFoundException ex) {
             logger.info(ex.getMessage());
-            conexion = null;
         } catch (SQLException ex) {
             logger.info(ex.getMessage());
-            conexion = null;
         } catch (Exception ex) {
             logger.info(ex.getMessage());
-            conexion = null;
         }
-        return conexion;
+        return null;
     }
     
     public void cerrarConexion(Connection conexion) {

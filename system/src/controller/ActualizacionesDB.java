@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -12,19 +13,21 @@ import javax.swing.JOptionPane;
 public class ActualizacionesDB {
      private Connection conexion;
      private PreparedStatement pst;
+    private Logger logger;
     
     public ActualizacionesDB(){        
         this.conexion = new ConexionDBM().establecerConexion(conexion);
+        logger = Logger.getLogger(ConsultasDB.class.getName());
     }
     
     public LinkedList<String> datosActualizarVenta(String codigo){
         LinkedList<String> datos = new LinkedList<>();
         try {
-            System.out.println("entra al nombre");
+            logger.info("entra al nombre");
             pst = conexion.prepareStatement("SELECT * FROM t_venta WHERE Venta_Cod = ?");           
             pst.setString(1, codigo);
             try (ResultSet rs = pst.executeQuery()) {
-                System.out.println("ejecucion del query");
+                logger.info("ejecucion del query");
                 while (rs.next()) {
                     datos.add(String.valueOf(rs.getDouble("Venta_Subtotal")));
                     datos.add(String.valueOf(rs.getDouble("Venta_Total")));                
@@ -32,7 +35,7 @@ public class ActualizacionesDB {
             }
             return datos;
         } catch (SQLException ex) {
-            System.out.println("Error al cargar productos en la db");
+            logger.info("Error al cargar productos en la db");
             System.out.println(ex);
         }return null;
     }
@@ -45,14 +48,14 @@ public class ActualizacionesDB {
             int rs=pst.executeUpdate();
             if (rs > 0) {
                 mostrarMensaje( "USUARIO ACTUALIZADO EXITOSAMENTE!");
-                System.out.println("usu bien");
+                logger.info("usu bien");
             } else {
                 mostrarMensaje( "USUARIO NO ACTUALIZADO EXITOSAMENTE!");
-                System.out.println("usu mal");
+                logger.info("usu mal");
             }
             
         }catch (SQLException ex) {
-            System.out.println("Error al cargar usuarios en la db");
+            logger.info("Error al cargar usuarios en la db");
             System.out.println(ex);
         }
     }
@@ -66,15 +69,15 @@ public class ActualizacionesDB {
             int res = pst.executeUpdate();
             if (res > 0) {
                 mostrarMensaje( "VENTA ACTUALIZADA EXITOSAMENTE!");
-                System.out.println("actv bien");
+                logger.info("actv bien");
             } else {
                 mostrarMensaje( "VENTA NO ACTUALIZADA EXITOSAMENTE!");
-                System.out.println("actv mal");
+                logger.info("actv mal");
             }
         } catch (SQLException ex) {
             mostrarMensaje("VENTA NO ACTUALIZADA EXITOSAMENTE!");
-            System.out.println("actv mal");
-            System.out.println(ex.getMessage());
+            logger.info("actv mal");
+            logger.info(ex.getMessage());
         }
     }
     public void mostrarMensaje(String cadena){
