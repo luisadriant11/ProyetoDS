@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
@@ -20,7 +22,7 @@ public class ActualizacionesDB {
         logger = Logger.getLogger(ConsultasDB.class.getName());
     }
     
-    public LinkedList<String> datosActualizarVenta(String codigo){
+    public List<String> datosActualizarVenta(String codigo){
         LinkedList<String> datos = new LinkedList<>();
         try {
             logger.info("entra al nombre");
@@ -36,8 +38,8 @@ public class ActualizacionesDB {
             return datos;
         } catch (SQLException ex) {
             logger.info("Error al cargar productos en la db");
-            System.out.println(ex);
-        }return null;
+            logger.info(ex.getSQLState());
+        }return Collections.emptyList();
     }
     
     public void actualizarPermisos(String usuario,String tipo){
@@ -56,7 +58,7 @@ public class ActualizacionesDB {
             
         }catch (SQLException ex) {
             logger.info("Error al cargar usuarios en la db");
-            System.out.println(ex);
+            logger.info(ex.getSQLState());
         }
     }
     

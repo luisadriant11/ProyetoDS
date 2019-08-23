@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Administrador;
@@ -27,9 +28,11 @@ import model.Vendedor;
 public class CargasDB {
 
     private Connection conexion;
+    private Logger logger;
 
     public CargasDB() {
         this.conexion = new ConexionDBM().establecerConexion(conexion);
+        logger = Logger.getLogger(CargasDB.class.getName());
     }
 
     public Empleado login(String user, String pass) {
@@ -63,8 +66,8 @@ public class CargasDB {
                 }
             }
         } catch (SQLException ex) {
-            System.out.println("Error al login");
-            System.out.println(ex);
+            logger.info("Error al login");
+            logger.info(ex.getSQLState());
         }
         return null;
     }
@@ -96,13 +99,13 @@ public class CargasDB {
         }
     }
 
-    public LinkedList<Articulo> cargarArticulos() {
+    public List<Articulo> cargarArticulos() {
         LinkedList<Articulo> articulosDisponibles = new LinkedList<>();
-        System.out.println("conecta db para buscar c");
+        logger.info("conecta db para buscar c");
         try {
-            System.out.println("entra al nombre");
+            logger.info("entra al nombre");
             try (PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_articulo"); ResultSet rs = pst.executeQuery()) {
-                System.out.println("ejecucion del query");
+                logger.info("ejecucion del query");
                 while (rs.next()) {
                     switch (rs.getString("Art_Categ")) {
                         case "telefono":
@@ -124,8 +127,8 @@ public class CargasDB {
             }
             return articulosDisponibles;
         } catch (SQLException ex) {
-            System.out.println("Error al cargar productos en la db");
-            System.out.println(ex);
+            logger.info("Error al cargar productos en la db");
+            logger.info(ex.getSQLState());
         }
         return null;
     }

@@ -4,6 +4,7 @@ import controller.CargasDB;
 import java.awt.Color;
 import java.sql.Date;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Administrador;
@@ -29,8 +30,11 @@ public class VendedorView extends javax.swing.JFrame {
     private PanelConsultaCliente panelCC;
     private PanelEdicionVenta panelEV;
     private NotificacionPeticion notPet;
+    private Logger logger;
     
-    public VendedorView(Vendedor vendedor) {        
+    public VendedorView(Vendedor vendedor) {       
+        
+        logger = Logger.getLogger(VendedorView.class.getName());
         getContentPane().setBackground(Color.white);
         this.vendedor = vendedor;
         this.panelCA=new PanelConsultaArticulo(vendedor);
@@ -39,10 +43,10 @@ public class VendedorView extends javax.swing.JFrame {
         notPet = new NotificacionPeticion();
         notPet.attach(new Administrador());
         listModel= new DefaultListModel<>();
-        articulos = cargas.cargarArticulos();
+        articulos = (LinkedList<Articulo>) cargas.cargarArticulos();
         initComponents();
         articulos.forEach((a) -> {
-            System.out.println(a.getModelo());
+            logger.info(a.getModelo());
         });        
         this.setLocationRelativeTo(null);
         jTabbedPane1.addTab("CONSULTA DE PRODUCTOS", panelCA);        
@@ -657,7 +661,7 @@ public class VendedorView extends javax.swing.JFrame {
         Lista.setModel(listModel);
 
         for(int i=0; i<listModel.getSize();i++){
-            System.out.println(listModel.get(i));
+            logger.info(listModel.get(i));
         }
         listModel.addElement(art);
         float valor=0;
@@ -713,7 +717,7 @@ public class VendedorView extends javax.swing.JFrame {
             Efectivo efectivo = new Efectivo();
             transaccion.realizarVenta(venta, vendedor, cedulaCliente, productosComprados, efectivo);            
         }else{
-            System.out.println("mal");
+            logger.info("mal");
         }
     }//GEN-LAST:event_jButton9ActionPerformed
     
