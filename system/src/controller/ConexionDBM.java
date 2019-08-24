@@ -17,23 +17,20 @@ import java.util.logging.Logger;
 
 public class ConexionDBM {
 
-    private final String URL = "jdbc:mysql://localhost:3306/tecno";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "root";      
+    private static final String URL = "jdbc:mysql://localhost:3306/tecno";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "root";      
     private Logger logger;
+    private static final String DRIVER_CLASS_NAME ="com.mysql.jdbc.Driver";
 
     public Connection establecerConexion(Connection conexion) {
         logger = Logger.getLogger(ConsultasDB.class.getName());
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexion = (Connection) DriverManager.getConnection(this.URL, this.USERNAME, this.PASSWORD);
+            Class.forName(DRIVER_CLASS_NAME);
+            conexion = DriverManager.getConnection(ConexionDBM.URL, ConexionDBM.USERNAME, ConexionDBM.PASSWORD);
             logger.info("Conexion exitosa");
             return conexion;
-        } catch (ClassNotFoundException ex) {
-            logger.info(ex.getMessage());
-        } catch (SQLException ex) {
-            logger.info(ex.getMessage());
-        } catch (Exception ex) {
+        } catch (ClassNotFoundException|SQLException ex){
             logger.info(ex.getMessage());
         }
         return null;

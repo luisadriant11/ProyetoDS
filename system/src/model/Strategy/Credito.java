@@ -1,9 +1,12 @@
 package model.Strategy;
 
+import java.util.logging.Logger;
+
 public class Credito extends FormaPago implements PagoStrategy{
 
     private String modo;
     private int mesesDiferido;
+    private static final Logger logger= Logger.getLogger(Credito.class.getName());
 
     public Credito() {
     }        
@@ -38,6 +41,6 @@ public class Credito extends FormaPago implements PagoStrategy{
 
     @Override
     public void pagar(float total) {
-        System.out.println("Pagando con tarjeta de crédito...");
+        logger.info("Pagando con tarjeta de crédito...");
     }
 }

@@ -55,7 +55,7 @@ public class IngresosDB {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Cliente no ingresado éxitosamente en el sistema");
             logger.info("usuario mal");
-            System.out.println(ex.getMessage());
+            logger.info(ex.getMessage());
         }
     }
 
@@ -75,7 +75,7 @@ public class IngresosDB {
             }
         } catch (SQLException ex) {
             logger.info("Error usuario venta");
-            System.out.println(ex);
+            logger.info(ex.getSQLState());
         }
         return id;
     }
@@ -96,7 +96,7 @@ public class IngresosDB {
             return id;
         } catch (SQLException ex) {
             logger.info("Error cliente venta");
-            System.out.println(ex);
+            logger.info(ex.getSQLState());
         }
         return id;
     }
@@ -110,12 +110,6 @@ public class IngresosDB {
                 pst.setInt(4, getIDCliente(cedulaCliente));
                 pst.setInt(5, getIDVendedor(vendedor));
                 pst.setString(6, venta.getCodigo());
-//              pst.setDate(1, Date.valueOf(new SimpleDateFormat("yyyy-MM-dd").format(venta.getFecha())));
-//            pst.setDouble(2, 661.0);
-//            pst.setDouble(3, 740.32);
-//            pst.setInt(4, 1);
-//            pst.setInt(5, 3);
-//            pst.setString(6, venta.getCodigo());
                 int res = pst.executeUpdate();
                 if (res > 0) {
                     logger.info("venta bien");
@@ -125,13 +119,13 @@ public class IngresosDB {
             }
         } catch (SQLException ex) {
             logger.info("venta mal");
-            System.out.println(ex.getMessage());
+            logger.info(ex.getMessage());
         }
     }
 
     private int getIDVenta(Venta venta) {
         int id = 1;
-        System.out.println(id);
+        logger.info((String.valueOf(id)));
         try {
             logger.info("entra al nombre");
             try (PreparedStatement pst = conexion.prepareStatement("SELECT * FROM t_venta WHERE Venta_Cod = ?")) {
@@ -146,9 +140,8 @@ public class IngresosDB {
             return id;
         } catch (SQLException ex) {
             logger.info("Error cliente venta");
-            System.out.println(ex);
+            logger.info(ex.getSQLState());
         }
-        System.out.println(id);
         return id;
     }
 
@@ -227,7 +220,7 @@ public class IngresosDB {
             }
         } catch (SQLException ex) {
             logger.info("Error id art");
-            System.out.println(ex);
+            logger.info(ex.getSQLState());
         }
         return id;
     }

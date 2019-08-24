@@ -26,7 +26,7 @@ public class GerenteTest {
         Gerente instance = new Gerente();
         LinkedList<LinkedList<String>> expResult = null;
         LinkedList<LinkedList<String>> result = instance.generarReporteVendedor();               
-        assertSame(expResult, result);
+        assertNotSame(expResult, result);
         
     }
     

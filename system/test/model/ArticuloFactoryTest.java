@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.logging.Logger;
 import model.FactoryMethod.ArticuloFactory;
 import model.FactoryMethod.Articulo;
 import org.junit.After;
@@ -18,6 +19,7 @@ import static org.junit.Assert.*;
  *
  */
 public class ArticuloFactoryTest {
+    private static final Logger logger= Logger.getLogger(ArticuloFactoryTest.class.getName());
     
     public ArticuloFactoryTest() {
     }
@@ -28,7 +30,7 @@ public class ArticuloFactoryTest {
      */
     @Test
     public void testCrearArticulo() {
-        System.out.println("crearArticulo");
+        logger.info("crearArticulo");
         String modelo = "";
         String marca = "";
         String categoria = "";

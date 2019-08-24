@@ -6,10 +6,12 @@ import model.ChainOfResponsability.Transaccion;
 import controller.ConsultasDB;
 import controller.IngresosDB;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 public class Administrador extends Empleado implements PeticionPermiso{
     private IngresosDB ingreso;
     private ConsultasDB consultas;
+    private static final Logger logger= Logger.getLogger(Administrador.class.getName());
     
     public Administrador() {
         ingreso = new IngresosDB();
@@ -85,16 +87,16 @@ public class Administrador extends Empleado implements PeticionPermiso{
 
     @Override
     public void update() {
-        System.out.println("Administrador:");
-        System.out.println("Concebir permiso ...");
+        logger.info("Administrador:");
+        logger.info("Concebir permiso ...");
     }
 
     @Override
     public LinkedList<LinkedList<String>> consultarArticulo(String modo, String campo) {
-        System.out.println("consulta articulo ...");        
-        System.out.println(modo);
-        System.out.println(campo);
-        LinkedList<LinkedList<String>> datos = consultas.consultarArticulo(modo, campo);
+        logger.info("consulta articulo ...");        
+        logger.info(modo);
+        logger.info(campo);
+        LinkedList<LinkedList<String>> datos = (LinkedList<LinkedList<String>>) consultas.consultarArticulo(modo, campo);
         return datos;
     }
 

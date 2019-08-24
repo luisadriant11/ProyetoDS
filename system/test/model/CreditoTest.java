@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.logging.Logger;
 import model.Strategy.Credito;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,6 +18,7 @@ import static org.junit.Assert.*;
  *
  */
 public class CreditoTest {
+    private static final Logger logger= Logger.getLogger(CreditoTest.class.getName());
     
     public CreditoTest() {
     }
@@ -26,7 +28,7 @@ public class CreditoTest {
      */
     @Test
     public void testGetModo() {
-        System.out.println("getModo");
+        logger.info("getModo");
         Credito instance = new Credito(9);
         String expResult = "Pago Diferido";                
         String result = instance.getModo();        

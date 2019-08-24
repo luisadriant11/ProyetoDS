@@ -6,6 +6,7 @@
 package controller;
 
 import java.util.LinkedList;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -13,6 +14,7 @@ import static org.junit.Assert.*;
  *
  */
 public class ActualizacionesDBTest {
+    private static final Logger logger= Logger.getLogger(ActualizacionesDBTest.class.getName());
     
     public ActualizacionesDBTest() {
     }
@@ -22,7 +24,7 @@ public class ActualizacionesDBTest {
      */
     @Test
     public void testDatosActualizarVenta() {
-        System.out.println("datosActualizarVenta");
+        logger.info("datosActualizarVenta");
         String codigo = "";
         ActualizacionesDB instance = new ActualizacionesDB();
         LinkedList<String> result = (LinkedList<String>) instance.datosActualizarVenta(codigo);
@@ -34,8 +36,8 @@ public class ActualizacionesDBTest {
      */
     @Test
     public void testMostrarMensaje() {
-        System.out.println("mostrarMensaje");
-        String cadena = "";
+        logger.info("mostrarMensaje");
+        String cadena = "maldy";
         ActualizacionesDB instance = new ActualizacionesDB();
         instance.mostrarMensaje(cadena);
     }

@@ -2,6 +2,7 @@
 
 import model.Strategy.FormaPago;
 import java.util.*;
+import java.util.logging.Logger;
 import model.FactoryMethod.Articulo;
 import model.Vendedor;
 import model.Venta;
@@ -13,6 +14,8 @@ public class Transaccion implements IAtenderCliente{
     private Date fecha;
     private int idCliente;
     private int idVendedor;
+    private static final Logger logger= Logger.getLogger(Transaccion.class.getName());
+    
 
     public Date getFecha() {
         return fecha;
@@ -43,7 +46,7 @@ public class Transaccion implements IAtenderCliente{
     }       
         
     public void registrarTransacción() {
-        System.out.println("Transacion"+this.idTransacción+" exitosa");
+        logger.info("Transacion"+this.idTransacción+" exitosa");
     }
 
     @Override

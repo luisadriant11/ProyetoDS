@@ -1,6 +1,7 @@
 package view;
 
 import java.util.LinkedList;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import model.Empleado;
 
@@ -10,6 +11,7 @@ import model.Empleado;
 public class PanelConsultaArticulo extends javax.swing.JPanel {
 
     private Empleado emp;
+    private static final Logger logger= Logger.getLogger(PanelConsultaArticulo.class.getName());
 
     public PanelConsultaArticulo(Empleado emp) {
         this.emp = emp;
@@ -80,8 +82,8 @@ public class PanelConsultaArticulo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        System.out.println((String) jComboBox1.getSelectedItem());
-        System.out.println(jTextField1.getText());
+        logger.info((String) jComboBox1.getSelectedItem());
+        logger.info(jTextField1.getText());
         LinkedList<LinkedList<String>> datos = emp.consultarArticulo((String) jComboBox1.getSelectedItem(), jTextField1.getText());
         if (datos.size() != 0) {
             DefaultTableModel model1 = new DefaultTableModel(null, new String[]{"Nombre", "Categoria", "Precio", "Marca"});

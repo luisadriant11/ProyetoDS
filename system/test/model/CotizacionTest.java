@@ -10,6 +10,7 @@ import model.FactoryMethod.ConsolaVideoJuegos;
 import model.FactoryMethod.Camara;
 import model.FactoryMethod.Articulo;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -17,6 +18,7 @@ import static org.junit.Assert.*;
  *
  */
 public class CotizacionTest {
+    private static final Logger logger= Logger.getLogger(CotizacionTest.class.getName());
     
     public CotizacionTest() {
     }
@@ -27,7 +29,7 @@ public class CotizacionTest {
      */
     @Test
     public void testCalcularTotal() {
-        System.out.println("calcularTotal");
+        logger.info("calcularTotal");
         Articulo x= new Telefono("X", "X", "X", "X", (float) 1.0, 1);
         Articulo y= new ConsolaVideoJuegos("Y", "Y", "Y", "Y", (float) 2.0, 1);
         Articulo z= new Camara("Z", "Z", "Z", "Z", (float) 3.0, 1);

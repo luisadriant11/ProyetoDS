@@ -3,12 +3,14 @@ package model;
 import model.FactoryMethod.Articulo;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class Cotizacion {
 
     private String codigo;
     private Date fecha;
     private float total;
+    private static final Logger logger= Logger.getLogger(Cotizacion.class.getName());;
 
     public Cotizacion() {
     }
@@ -46,7 +48,7 @@ public class Cotizacion {
     public void mostrarProductosCotizados(LinkedList<Articulo> listArticulos){
         if (null != listArticulos) {
             listArticulos.forEach((a) -> {
-                System.out.println(a.getCategoria() + a.getDescripcion());
+                logger.info(a.getCategoria() + a.getDescripcion());
             });
         }
     }    

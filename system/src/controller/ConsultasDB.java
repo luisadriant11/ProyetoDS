@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.sql.Connection;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,7 +26,7 @@ public class ConsultasDB {
            
     }
 
-    public LinkedList<LinkedList<String>> consultarArticulo(String modo, String campo) {         
+    public List<LinkedList<String>> consultarArticulo(String modo, String campo) {         
         logger.info("conecta db para articulo");
         switch (modo) {
             case "nombre":
@@ -36,10 +38,10 @@ public class ConsultasDB {
             default:
                 break;
         }
-        return null;
+        return Collections.emptyList(); 
     }
     
-    public LinkedList<String> consultarClienteDB(String cedula) {
+    public List<String> consultarClienteDB(String cedula) {
         LinkedList<String> datos = new LinkedList<>();
         logger.info("conecta db para buscar c");
         try {
@@ -65,12 +67,12 @@ public class ConsultasDB {
             return datos;
         } catch (SQLException ex) {
             logger.info("Error al no encontrar el producto en la db");
-            System.out.println(ex);
+            logger.info(ex.getSQLState());
         }
-        return null;
+        return Collections.emptyList();
     }
 
-    private LinkedList<LinkedList<String>> consultaNombre(String campo) {
+    private List<LinkedList<String>> consultaNombre(String campo) {
         datosArt = new LinkedList<>();
         logger.info("antes del try para articulo");
         try {
@@ -82,12 +84,12 @@ public class ConsultasDB {
             return datosArt;
         } catch (SQLException ex) {
             logger.info("Error al no encontrar el producto en la db");
-            System.out.println(ex);
+            logger.info(ex.getSQLState());
         }
-        return null;
+        return Collections.emptyList();
     }
 
-    private LinkedList<LinkedList<String>> consultaDescripcion(String campo) {
+    private List<LinkedList<String>> consultaDescripcion(String campo) {
         datosArt = new LinkedList<>();
         logger.info("antes del try para articulo");
         try {
@@ -99,12 +101,12 @@ public class ConsultasDB {
             return datosArt;
         } catch (SQLException ex) {
             logger.info("Error al no encontrar el producto en la db");
-            System.out.println(ex);
+            logger.info(ex.getSQLState());
         }
-        return null;
+        return Collections.emptyList(); 
     }
 
-    private LinkedList<LinkedList<String>> consultaCategoria(String campo) {
+    private List<LinkedList<String>> consultaCategoria(String campo) {
         datosArt = new LinkedList<>();
         logger.info("antes del try para articulo");
         try {
@@ -116,8 +118,8 @@ public class ConsultasDB {
             return datosArt;
         } catch (SQLException ex) {
             logger.info("Error al no encontrar el producto en la db");
-            System.out.println(ex);
-        }return null;
+            logger.info(ex.getSQLState());
+        }return Collections.emptyList(); 
     }
     
     private void guardarDatosArt(ResultSet rs, LinkedList<LinkedList<String>> datosArt){

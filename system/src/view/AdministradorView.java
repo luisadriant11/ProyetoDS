@@ -825,7 +825,7 @@ public class AdministradorView extends javax.swing.JFrame {
             }
             act.actualizarPermisos(usu, t);
             }catch(Exception e){
-                System.out.println("No existe usuario");
+                logger.info("No existe usuario");
             }
     }//GEN-LAST:event_comfirmarCambiosActionPerformed
     private void cambiarValores(String campo1, String campo2) {

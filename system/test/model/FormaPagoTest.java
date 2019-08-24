@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.logging.Logger;
 import model.Strategy.FormaPago;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,6 +18,7 @@ import static org.junit.Assert.*;
  *
  */
 public class FormaPagoTest {
+    private static final Logger logger= Logger.getLogger(FormaPagoTest.class.getName());
     
     public FormaPagoTest() {
     }
@@ -25,7 +27,7 @@ public class FormaPagoTest {
      */
     @Test
     public void testPagar() {
-        System.out.println("pagar");
+        logger.info("pagar");
         String modo = "EFECTIVO";
         float total = 0.0F;
         FormaPago instance = new FormaPago();

@@ -4,11 +4,13 @@ import model.ChainOfResponsability.Transaccion;
 import controller.ConsultasDB;
 import controller.ReportesDB;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class Gerente extends Empleado {
     
     private ConsultasDB consultas;
-    private ReportesDB reportes;
+    private ReportesDB reportes;    
+    private static final Logger logger= Logger.getLogger(Administrador.class.getName());;
 
     public Gerente() {
         this.consultas=new ConsultasDB();
@@ -17,17 +19,17 @@ public class Gerente extends Empleado {
 
     @Override
     public LinkedList<String> consultarCliente(String cedula) {
-        System.out.println("consulta cliente ...");        
-        LinkedList<String>datos = consultas.consultarClienteDB(cedula);
+        logger.info("consulta cliente ...");        
+        LinkedList<String>datos = (LinkedList<String>) consultas.consultarClienteDB(cedula);
         return datos;
     }
     
     @Override
     public LinkedList<LinkedList<String>> consultarArticulo(String modo, String campo) {
-        System.out.println("consulta articulo ...");        
-        System.out.println(modo);
-        System.out.println(campo);
-        LinkedList<LinkedList<String>> datos = consultas.consultarArticulo(modo, campo);
+        logger.info("consulta articulo ...");        
+        logger.info(modo);
+        logger.info(campo);
+        LinkedList<LinkedList<String>> datos = (LinkedList<LinkedList<String>>) consultas.consultarArticulo(modo, campo);
         return datos;
     }
 
@@ -37,16 +39,16 @@ public class Gerente extends Empleado {
     }
     
     public LinkedList<LinkedList<String>> generarReporteVendedor(){        
-        System.out.println("Entra a grv");
+        logger.info("Entra a grv");
         LinkedList<LinkedList<String>> datos;
-        datos = reportes.reporteVendedor();
+        datos = (LinkedList<LinkedList<String>>) reportes.reporteVendedor();
         return datos;
     }
     
     public LinkedList<LinkedList<String>> generarReporteArticulo(){        
-        System.out.println("Entra a grv");
+        logger.info("Entra a grv");
         LinkedList<LinkedList<String>> datos;
-        datos = reportes.reporteArticulo();
+        datos = (LinkedList<LinkedList<String>>) reportes.reporteArticulo();
         return datos;
     }
 }

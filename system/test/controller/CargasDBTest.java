@@ -6,6 +6,7 @@
 package controller;
 
 import java.util.LinkedList;
+import java.util.logging.Logger;
 import model.FactoryMethod.Articulo;
 import model.Empleado;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import static org.junit.Assert.*;
  *
  */
 public class CargasDBTest {
+    private static final Logger logger= Logger.getLogger(CargasDBTest.class.getName());
     
     public CargasDBTest() {
     }
@@ -24,7 +26,7 @@ public class CargasDBTest {
      */
     @Test
     public void testLogin() {
-        System.out.println("login");
+        logger.info("login");
         String user = "";
         String pass = "";
         CargasDB instance = new CargasDB();

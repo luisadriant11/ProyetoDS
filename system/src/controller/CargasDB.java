@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -130,6 +131,6 @@ public class CargasDB {
             logger.info("Error al cargar productos en la db");
             logger.info(ex.getSQLState());
         }
-        return null;
+        return Collections.emptyList();
     }
 }

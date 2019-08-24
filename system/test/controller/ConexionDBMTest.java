@@ -6,6 +6,7 @@
 package controller;
 
 import java.sql.Connection;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,6 +18,7 @@ import static org.junit.Assert.*;
  *
  */
 public class ConexionDBMTest {
+    private static final Logger logger= Logger.getLogger(ConexionDBMTest.class.getName());
     
     public ConexionDBMTest() {
     }
@@ -25,7 +27,7 @@ public class ConexionDBMTest {
      */
     @Test
     public void testEstablecerConexion() {
-        System.out.println("establecerConexion");
+        logger.info("establecerConexion");
         Connection conexion = null;
         ConexionDBM instance = new ConexionDBM();
         Connection result = instance.establecerConexion(conexion);

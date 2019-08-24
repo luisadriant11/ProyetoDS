@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -12,6 +13,7 @@ import static org.junit.Assert.*;
  *
  */
 public class VentaTest {
+    private static final Logger logger= Logger.getLogger(VentaTest.class.getName());
     
     public VentaTest() {
     }
@@ -21,7 +23,7 @@ public class VentaTest {
      */
     @Test
     public void testCalcularValorTotalEquals() {
-        System.out.println("CalcularValorTotal");
+        logger.info("CalcularValorTotal");
         Venta instance = new Venta();
         instance.setSubtotal(400);
         double result = instance.calcularValorTotal();
